@@ -3,8 +3,8 @@ NAME	= philo
 SRC		= die.c init.c parser.c philosophers.c duration.c time.c utilities.c leak.c
 OBJ		= die.o init.o parser.o philosophers.o duration.o time.o utilities.o leak.o
 LIB		= -lpthread
-CC 		= gcc -g
-CFLAGS 	= -Wall -Wextra -Werror -fsanitize=thread -pthread
+CC 		= cc -g
+CFLAGS 	= -Wall -Wextra -Werror -pthread
 ARCH	= philosophers.dSYM
 RM		= rm -rf
 

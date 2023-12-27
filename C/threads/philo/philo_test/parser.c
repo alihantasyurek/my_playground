@@ -12,7 +12,6 @@
 
 #include "philosophers.h"
 #include <stdio.h>
-#include <stdlib.h>
 #include <pthread.h>
 
 int	condition_check(int ac, char **av)

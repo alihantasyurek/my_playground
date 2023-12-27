@@ -38,7 +38,7 @@ int	patoi(char *str)
 
 	i = -1;
 	res = 0;
-	if (!str || str < 0)
+	if (!str || *str < 0)
 		return (0);
 	if (str[0] == '+')
 		i++;
@@ -55,7 +55,7 @@ void	process_print(t_philo *philo, char *str)
 	pthread_mutex_lock(&philo->table->is_print);
 	pthread_mutex_lock(&philo->table->stop_count);
 	if (!philo->table->stop)
-		printf("%llu 	%llu %s\n", i, philo->id, str);
+		printf("%lu 	%lu %s\n", i, philo->id, str);
 	pthread_mutex_unlock(&philo->table->stop_count);
 	pthread_mutex_unlock(&philo->table->is_print);
 }
