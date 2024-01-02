@@ -14,7 +14,9 @@
 # define PHILOSOPHERS_H
 
 # include <pthread.h>
-# include <stdint.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdint.h>
 
 # define TOOK_THE_FORK "has taken a fork"
 # define EATING "is eating"

@@ -4,7 +4,7 @@ SRC		= die.c init.c parser.c philosophers.c duration.c time.c utilities.c leak.c
 OBJ		= die.o init.o parser.o philosophers.o duration.o time.o utilities.o leak.o
 LIB		= -lpthread
 CC 		= cc -g
-CFLAGS 	= -Wall -Wextra -Werror -pthread
+CFLAGS 	= -Wall -Wextra -Werror -pthread -fsanitize=thread
 ARCH	= philosophers.dSYM
 RM		= rm -rf
 

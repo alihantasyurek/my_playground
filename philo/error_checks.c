@@ -1,5 +1,4 @@
 #include <stdio.h> // BE CAREFUL WITH THESE
-#include <stdlib.h> // BE CAREFUL WITH THESE
 #include "philo.h"
 
 int digit_control(char **argv)
@@ -23,11 +22,11 @@ int digit_control(char **argv)
 return (SUCCESS);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
-	int	sign;
-	int	result;
-	int	i;
+	int     sign;
+	long	result;
+	int     i;
 
 	sign = 1;
 	result = 0;
@@ -50,9 +49,9 @@ int	ft_atoi(const char *str)
 
 int input_value(int argc,char **argv)
 {
-if(ft_atoi(argv[1]) < 1)
+if(ft_atol(argv[1]) < 1)
     return(FAILURE);
-if(argc == 6 && ft_atoi(argv[5]) < 1)
+if(argc == 6 && ft_atol(argv[5]) < 1)
     return(FAILURE);
 
 return(SUCCESS);
