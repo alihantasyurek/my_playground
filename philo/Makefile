@@ -9,7 +9,8 @@ SRC = main.c \
 	  data_init.c \
 	  dinner.c \
 	  utils.c \
-	  print.c
+	  print.c \
+	  monitor.c
 
 OBJ = $(SRC: .c=.o)
 
