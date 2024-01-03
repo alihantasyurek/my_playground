@@ -53,10 +53,15 @@ void    *dinner(void *data)
     t_philo *philo;
     philo = (t_philo *)data;
 
+    // spinlock
     wait_all_threads(philo->table);
 
-    // set last meal time
+    // synchro with monitor
+    // increase a table variable counter, with all the threads running
+    increase_long(&philo->table->table_mutex, 
+                 &philo->table->threads_running_nbr);
 
+    // set last meal time
     while (simulation_finished(philo->table)) // might be reversed.
     {
         // am i full
@@ -86,8 +91,12 @@ i = -1;
 //
 
 while (++i < table->philo_nbr)
-    if(pthread_create(&table->philos[i].thread_id,NULL,dinner,&table->philos[i]))
+    if(pthread_create(&table->philos[i].thread_id,NULL,dinner,&table->philos[i])) // threads created in the dinner function
         return FAILURE;
+
+//monitor is gonna check if someones dead or not
+    if(pthread_create(&table->monitor,NULL, monitor_dinner,&table)) // threads created in the dinner function
+
 //start_sim
 table->start_simulation = gettime_ms();
     if(table->start_simulation == FAILURE)

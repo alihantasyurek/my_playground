@@ -2,8 +2,6 @@
 #include <sys/time.h> // be careful with these
 #include <unistd.h> // usleep
 
-/*******************************************************/
-/*******************************************************/
 void	set_int(pthread_mutex_t	*mutex, int *dest, int value)
 {
     if(pthread_mutex_lock(mutex))
@@ -56,8 +54,16 @@ int simulation_finished(t_table *table)
     return (get_int(&table->table_mutex, &table->end_simulation));
 }
 
-/*******************************************************/
-/*******************************************************/
+// Increase threads running
+// to synchro with the monitor
+void    increase_long(pthread_mutex_t *mutex, long *value)
+{
+    if(pthread_mutex_lock(mutex))
+        return ;
+    (*value)++;
+    if(pthread_mutex_unlock(mutex))
+        return ;
+}
 
 long    gettime_ms(void)
 {

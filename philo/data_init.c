@@ -42,6 +42,7 @@ int data_init(t_table *table)
  i = -1;
  table->end_simulation = FAILURE;
  table->all_threads_ready = FAILURE;
+ table->threads_running_nbr = FAILURE;
 
  if (pthread_mutex_init(&table->print_mutex,NULL))
     return FAILURE;

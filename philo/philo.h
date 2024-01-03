@@ -59,6 +59,8 @@ typedef struct s_table
     pthread_mutex_t print_mutex;
     t_fork  *forks; // array to forks 
     t_philo *philos; // array for philos
+    pthread_t   monitor;
+    long    threads_running_nbr;
     
 }t_table;
 
@@ -84,5 +86,8 @@ void	set_int(pthread_mutex_t	*mutex, int *dest, int value);
 void    set_long(pthread_mutex_t	*mutex, long *dest, long value);
 int     get_int(pthread_mutex_t	*mutex, int *value);
 long    get_long(pthread_mutex_t	*mutex, long *value);
+void    *monitor_dinner(void *data);
+int     all_threads_running(pthread_mutex_t *mutex, long *threads, long philo_nbr);
+void    increase_long(pthread_mutex_t *mutex, long *value);
 
 #endif
