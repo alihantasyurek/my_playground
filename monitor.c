@@ -23,7 +23,6 @@ table = (t_table *)data;
 
 // make sure all philo running
 // apinloxk till all threads run
-// https://youtu.be/zOpzGHwJ3MU?t=6103
 while (all_threads_running(&table->table_mutex, &table->threads_running_nbr, table->philo_nbr)) // might be reversed
                     ;
 
