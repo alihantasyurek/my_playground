@@ -5,11 +5,13 @@
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
-      "args": [],
+      "args": [
+        "4", "510","200", "200"
+      ],
       "stopAtEntry": true,
       "externalConsole": false,
       "cwd": "/Users/atasyure/Desktop/my_playground/philo",
-      "program": "/Users/atasyure/Desktop/my_playground/philo/build/Debug/outDebug",
+      "program": "/Users/atasyure/Desktop/my_playground/philo/philo",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb"
     }

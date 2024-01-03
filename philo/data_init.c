@@ -7,12 +7,12 @@ void  assign_forks(t_philo *philo, t_fork *forks,
 
    philo_nbr = philo->table->philo_nbr;
 
-   philo->right_fork = &forks[(philo_index_pos + 1) % philo_nbr];
-   philo->left_fork = &forks[philo_index_pos];
+   philo->first_fork = &forks[(philo_index_pos + 1) % philo_nbr];
+   philo->second_fork = &forks[philo_index_pos];
    if (philo->id % 2 == 0)
    {
-   philo->right_fork = &forks[philo_index_pos];
-   philo->left_fork = &forks[(philo_index_pos + 1) % philo_nbr];
+   philo->first_fork = &forks[philo_index_pos];
+   philo->second_fork = &forks[(philo_index_pos + 1) % philo_nbr];
    }
 }
 
@@ -26,10 +26,12 @@ void  philo_init(t_table *table)
    {
       philo = table->philos + i;
       philo->id = i + 1;
-      philo->is_full = -1;
+      philo->full = -1;
       philo->meals_counter = 0;
-      // 	safe_mutex_handle(&philo->philo_mutex, INIT);
       philo->table = table;
+      // init all philo mutexes
+      if(pthread_mutex_init(&philo->philo_mutex,NULL))
+         return ;
       assign_forks(philo, table->forks, i);
    }
 }

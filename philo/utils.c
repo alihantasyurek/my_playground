@@ -1,5 +1,63 @@
 #include "philo.h"
 #include <sys/time.h> // be careful with these
+#include <unistd.h> // usleep
+
+/*******************************************************/
+/*******************************************************/
+void	set_int(pthread_mutex_t	*mutex, int *dest, int value)
+{
+    if(pthread_mutex_lock(mutex))
+        return ;
+	*dest = value;
+    if(pthread_mutex_unlock(mutex))
+        return ;
+}
+
+void     set_long(pthread_mutex_t	*mutex, long *dest, long value)
+{
+    if(pthread_mutex_lock(mutex))
+        return ;
+	*dest = value;
+    if(pthread_mutex_unlock(mutex))
+        return ;
+}
+
+/* can make both int and make it set_value | get value */
+int     get_int(pthread_mutex_t	*mutex, int *value)
+{
+	int ret;
+
+    if(pthread_mutex_lock(mutex))
+        return FAILURE;
+    //reading thread safe
+	ret = *value;
+    if(pthread_mutex_unlock(mutex))
+        return FAILURE;
+	return (ret);
+}
+
+long     get_long(pthread_mutex_t	*mutex, long *value)
+{
+	long ret;
+
+    if(pthread_mutex_lock(mutex))
+        return FAILURE;
+    //reading thread safe
+	ret = *value;
+    if(pthread_mutex_unlock(mutex))
+        return FAILURE;
+	return (ret);
+}
+
+
+//you're using it with get int don't forget that 
+int simulation_finished(t_table *table)
+{
+    return (get_int(&table->table_mutex, &table->end_simulation));
+}
+
+/*******************************************************/
+/*******************************************************/
 
 long    gettime_ms(void)
 {

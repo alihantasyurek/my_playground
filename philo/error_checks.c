@@ -1,4 +1,3 @@
-#include <stdio.h> // BE CAREFUL WITH THESE
 #include "philo.h"
 
 int digit_control(char **argv)

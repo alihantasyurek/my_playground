@@ -1,14 +1,15 @@
 
 NAME = philo
 CC = cc -g
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -pthread
 
 SRC = main.c \
 	  error_checks.c \
 	  parse.c \
 	  data_init.c \
 	  dinner.c \
-	  utils.c
+	  utils.c \
+	  print.c
 
 OBJ = $(SRC: .c=.o)
 

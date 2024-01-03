@@ -3,10 +3,17 @@
 
 // if one or more files uses same header files you can add it here
 // else if one file uses one function from header don't add it here
-#include <pthread.h>
-#include <stdlib.h>
 #define SUCCESS 0
 #define FAILURE -1 
+
+#    include <stdbool.h>//remove this it is only for debug mode
+# ifndef DEBUG_MODE
+#  define DEBUG_MODE 1 // delete before push it and fix the print stuff
+# endif
+
+#include <pthread.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 typedef enum e_status
 {
@@ -29,11 +36,12 @@ typedef struct s_philo
 {
     int             id;
     long            meals_counter;
-    int             is_full;
+    int             full;
     long            last_meal_time;
-    t_fork          *left_fork;
-    t_fork          *right_fork;
+    t_fork          *first_fork;
+    t_fork          *second_fork;
     pthread_t       thread_id; // a philo is a thread
+    pthread_mutex_t philo_mutex; // useful for races wqith the monitor
     struct s_table  *table;
 }t_philo;
 
@@ -70,5 +78,11 @@ void	set_int(pthread_mutex_t	*mutex, int *dest, int value);
 int     get_int(pthread_mutex_t	*mutex, int *value);
 long    gettime_ms(void);
 void    precise_usleep(long usec, t_table *table);
+void    print_status(t_philo_status status, t_philo *philo, bool debug); // remove the bool part
+int     simulation_finished(t_table *table);
+void	set_int(pthread_mutex_t	*mutex, int *dest, int value);
+void    set_long(pthread_mutex_t	*mutex, long *dest, long value);
+int     get_int(pthread_mutex_t	*mutex, int *value);
+long    get_long(pthread_mutex_t	*mutex, long *value);
 
 #endif

@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/03 15:04:06 by atasyure          #+#    #+#             */
+/*   Updated: 2024/01/03 17:41:53 by atasyure         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-//https://youtu.be/zOpzGHwJ3MU?t=2735
-void deallocate_all(t_table *table)
+//https://youtu.be/zOpzGHwJ3MU?t=5748
+void	deallocate_all(t_table *table)
 {
     if(table->philos)
         free(table->philos);
