@@ -221,7 +221,7 @@ void	write_status(t_philo_status status, t_philo *philo, int debug);
 void	wait_all_threads(t_table *table);
 void	increase_long(pthread_mutex_t *mutex, long *value);
 int		all_threads_running(pthread_mutex_t *mutex, long *threads, long philo_nbr);
-void    thinking(t_philo *philo, int pre_simulation);
+void    thinking(t_philo *philo);
 void    de_synchronize_philos(t_philo *philo);
 
 //*** monitoring for deaths ***

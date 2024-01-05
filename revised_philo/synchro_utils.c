@@ -49,16 +49,16 @@ int	all_threads_running(pthread_mutex_t *mutex, long *threads,
  * 1) if even, just 30ms (half the min value 60ms)
  * 2) if odd, start by thinking
 */
-void	de_synchronize_philos(t_philo *philo)
-{
-	if (philo->table->philo_nbr % 2 == 0)
-	{
-		if (philo->id % 2 == 0)
-			precise_usleep(3e4, philo->table);
-	}
-	else
-	{
-		if (philo->id % 2)
-			thinking(philo, TRUE);
-	}
-}	
+// void	de_synchronize_philos(t_philo *philo)
+// {
+// 	if (philo->table->philo_nbr % 2 == 0)
+// 	{
+// 		if (philo->id % 2 == 0)
+// 			precise_usleep(3e4, philo->table);
+// 	}
+// 	else
+// 	{
+// 		if (philo->id % 2)
+// 			thinking(philo, TRUE);
+// 	}
+// }	
