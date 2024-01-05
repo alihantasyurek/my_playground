@@ -26,11 +26,13 @@ int     get_int(pthread_mutex_t	*mutex, int *value)
 	int ret;
 
     if(pthread_mutex_lock(mutex))
-        return FAILURE;
+        return false;
     //reading thread safe
 	ret = *value;
+
     if(pthread_mutex_unlock(mutex))
-        return FAILURE;
+        return false;
+
 	return (ret);
 }
 
@@ -39,11 +41,13 @@ long     get_long(pthread_mutex_t	*mutex, long *value)
 	long ret;
 
     if(pthread_mutex_lock(mutex))
-        return FAILURE;
+        return false;
+
     //reading thread safe
 	ret = *value;
+
     if(pthread_mutex_unlock(mutex))
-        return FAILURE;
+        return false;
 	return (ret);
 }
 

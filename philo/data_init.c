@@ -40,12 +40,13 @@ int data_init(t_table *table)
 {
  int i; 
  i = -1;
- table->end_simulation = FAILURE;
- table->all_threads_ready = FAILURE;
- table->threads_running_nbr = FAILURE;
+ table->end_simulation = false;
+ table->all_threads_ready = false;
+ table->threads_running_nbr = false;
 
  if (pthread_mutex_init(&table->print_mutex,NULL))
     return FAILURE;
+
  if (pthread_mutex_init(&table->table_mutex,NULL))
     return FAILURE;
 

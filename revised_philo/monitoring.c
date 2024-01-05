@@ -1,27 +1,5 @@
 #include "philo.h"
-
-/*
- * Monitor waits all threads are running the 
- * simulation before searching deaths
-*/
-int all_threads_running(pthread_mutex_t *mutex, long *threads,
-		long philo_nbr)
-{
-	bool	ret;
-
-	ret = false;
-
- if(pthread_mutex_lock(mutex))
-    return false;
-
-	if (*threads == philo_nbr)
-		ret = true;
-
- if(pthread_mutex_unlock(mutex))
-    return false;
-
-return (ret);
-}
+#include <stdio.h>
 
 /*
  * 1) Check if the philo is full,
@@ -37,26 +15,26 @@ return (ret);
  * I need to convert back from micro to milli
  * t_to_die
 */
-int philo_died(t_philo *philo)
+static int	philo_died(t_philo *philo)
 {
 	long	elapsed;
 	long	t_to_die;
 
 	if (get_int(&philo->philo_mutex, &philo->full))
-		return (false);
-	elapsed = gettime_ms() - get_long(&philo->philo_mutex,
+		return (FALSE);
+	elapsed = gettime(MILLISECOND) - get_long(&philo->philo_mutex,
 			&philo->last_meal_time);
-	t_to_die = philo->table->time_to_die;
+	t_to_die = philo->table->time_to_die / 1000;
 	if (elapsed > t_to_die)
-		return (true);
-	return (false);
+		return (TRUE);
+	return (FALSE);
 }
 
 /*
  * THREAD continuosly monitoring death philos
  * Two conditions to finish
  *
- * 1) if philo is death, set the flag end simulation to true and return
+ * 1) if philo is death, set the flag end simulation to TRUE and return
  * 2) All philos are full, end_simulation will be turned on by the main
  * 		thread in this case, when all the philos are JOINED
  * 	💡end_simulation is changed by the main thread | monitor💡
@@ -77,8 +55,8 @@ void	*monitor_dinner(void *data)
 		{
 			if (philo_died(table->philos + i))
 			{
-				set_int(&table->table_mutex, &table->end_simulation, true);
-				print_status(DIED, table->philos + i, DEBUG_MODE);
+				set_int(&table->table_mutex, &table->end_simulation, TRUE);
+				write_status(DIED, table->philos + i, DEBUG_MODE);
 			}
 		}
 	}

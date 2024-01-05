@@ -5,6 +5,8 @@
 // else if one file uses one function from header don't add it here
 #define SUCCESS 0
 #define FAILURE -1 
+#define true 1
+#define false 0
 
 #    include <stdbool.h>//remove this it is only for debug mode
 # ifndef DEBUG_MODE
